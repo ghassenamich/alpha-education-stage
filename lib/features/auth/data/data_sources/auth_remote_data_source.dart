@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import '../models/user_model.dart';
 
+
 /// Contract for remote authentication calls.
 abstract class AuthRemoteDataSource {
   Future<UserModel> login({required String email, required String password});
@@ -37,7 +38,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
           e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.sendTimeout ||
           e.type == DioExceptionType.receiveTimeout) {
-        throw Exception('Please make sure you are connected to the internet');
+        throw Exception('NO_INTERNET_CONNECTION');
       }
 
       if (e.response?.statusCode == 401 || e.response?.statusCode == 400) {

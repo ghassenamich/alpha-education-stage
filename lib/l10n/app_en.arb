@@ -1,0 +1,19 @@
+{
+    "@@locale": "en",
+    "language": "English",
+    "@language": {
+        "description": "Selected language for the application"
+    },
+    "login": "Login",
+    "log": "Log In",
+    "changeLanguage": "Change Language",
+    "email": "Email",
+    "password": "Password",
+    "loginSuccess": "Login successful!",
+    "getStarted": "GET STARTED",
+    "mobileApp": "Mobile App",
+    "education": "EDUCATION",
+    "makesureinternet": "Make sure you are connected to the internet",
+    "welcome": "ALPHA EDUCATION",
+    "start": "Sign in to access your profile and courses."
+}
