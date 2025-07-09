@@ -47,4 +47,27 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get start =>
       'Connectez-vous pour accéder à votre profil et à vos cours.';
+
+  @override
+  String get loginfailed => 'La connexion a échoué:';
+
+  @override
+  String get wrongEmailOrPassword => 'E-mail ou mot de passe incorrect';
+
+  @override
+  String get networkError =>
+      'Erreur réseau, veuillez vérifier votre connexion.';
+
+  @override
+  String get emailRequired => 'L\'e-mail est requis';
+
+  @override
+  String get invalidEmail => 'Veuillez entrer un e-mail valide';
+
+  @override
+  String get passwordRequired => 'Le mot de passe est requis';
+
+  @override
+  String get passwordTooShort =>
+      'Le mot de passe doit comporter au moins 7 caractères';
 }

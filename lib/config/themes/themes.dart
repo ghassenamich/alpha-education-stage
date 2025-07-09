@@ -10,7 +10,7 @@ ThemeData lightTheme = ThemeData(
     onPrimary: Colors.white,
     secondary: Color.fromARGB(255, 48, 48, 48),
     onSecondary: Colors.white,
-    error: Colors.red,
+    error: Color.fromARGB(255, 172, 11, 0),
     onError: Colors.white,
     onSurfaceVariant: Colors.white,
     surface: Color.fromARGB(255, 255, 255, 255),

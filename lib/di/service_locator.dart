@@ -1,3 +1,4 @@
+import 'package:education/config/themes/bloc/theme_bloc.dart';
 import 'package:education/features/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:education/features/auth/data/repository/auth_repository_impl.dart';
 import 'package:education/features/auth/domain/repository/auth_repository.dart';
@@ -26,7 +27,6 @@ Future<void> init() async {
     () => LocaleBloc(localeRepository: sl()),
   );
 
-  // Dio client
   sl.registerLazySingleton(
     () => Dio(
       BaseOptions(
@@ -52,4 +52,7 @@ Future<void> init() async {
 
   // Blocs
   sl.registerFactory(() => LoginBloc(loginUser: sl()));
+
+  sl.registerLazySingleton<ThemeBloc>(() => ThemeBloc());
+
 }

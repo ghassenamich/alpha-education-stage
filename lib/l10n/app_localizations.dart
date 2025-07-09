@@ -175,6 +175,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sign in to access your profile and courses.'**
   String get start;
+
+  /// No description provided for @loginfailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Login failed:'**
+  String get loginfailed;
+
+  /// No description provided for @wrongEmailOrPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong email or password'**
+  String get wrongEmailOrPassword;
+
+  /// No description provided for @networkError.
+  ///
+  /// In en, this message translates to:
+  /// **'Network error, please check your connection.'**
+  String get networkError;
+
+  /// No description provided for @emailRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Email is required'**
+  String get emailRequired;
+
+  /// No description provided for @invalidEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email'**
+  String get invalidEmail;
+
+  /// No description provided for @passwordRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Password is required'**
+  String get passwordRequired;
+
+  /// No description provided for @passwordTooShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 7 characters'**
+  String get passwordTooShort;
 }
 
 class _AppLocalizationsDelegate

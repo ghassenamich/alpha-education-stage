@@ -15,5 +15,12 @@
     "education": "EDUCATION",
     "makesureinternet": "Make sure you are connected to the internet",
     "welcome": "ALPHA EDUCATION",
-    "start": "Sign in to access your profile and courses."
+    "start": "Sign in to access your profile and courses.",
+    "loginfailed": "Login failed:",
+    "wrongEmailOrPassword": "Wrong email or password",
+    "networkError": "Network error, please check your connection.",
+    "emailRequired": "Email is required",
+    "invalidEmail": "Please enter a valid email",
+    "passwordRequired": "Password is required",
+    "passwordTooShort": "Password must be at least 7 characters"
 }

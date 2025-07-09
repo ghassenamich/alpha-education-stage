@@ -1,3 +1,5 @@
+import 'package:education/config/themes/bloc/theme_bloc.dart';
+import 'package:education/config/themes/bloc/theme_state.dart';
 import 'package:education/core/localizations/bloc/local_bloc.dart';
 import 'package:education/core/localizations/bloc/local_state.dart';
 import 'package:education/features/auth/presentation/pages/mainpage.dart';
@@ -24,23 +26,29 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<LoginBloc>(create: (_) => di.sl<LoginBloc>()),
         BlocProvider<LocaleBloc>(create: (_) => di.sl<LocaleBloc>()),
+        BlocProvider<ThemeBloc>(create: (_) => di.sl<ThemeBloc>()),
       ],
-      child: BlocBuilder<LocaleBloc, LocaleState>(
-        builder: (context, state) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Alpha Education',
-            theme: lightTheme, 
-            darkTheme: darkTheme,
-            locale: state.locale, // ✅ Reactively set locale from bloc
-            supportedLocales: const [Locale('en'), Locale('fr')],
-            localizationsDelegates: const [
-              AppLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            home: const Mainpage(),
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (context, themeState) {
+          return BlocBuilder<LocaleBloc, LocaleState>(
+            builder: (context, localeState) {
+              return MaterialApp(
+                debugShowCheckedModeBanner: false,
+                title: 'Alpha Education',
+                theme: lightTheme,
+                darkTheme: darkTheme,
+                themeMode: themeState.themeMode, // ← THEME FROM BLOC
+                locale: localeState.locale,
+                supportedLocales: const [Locale('en'), Locale('fr')],
+                localizationsDelegates: const [
+                  AppLocalizations.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                home: const Mainpage(),
+              );
+            },
           );
         },
       ),

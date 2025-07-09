@@ -4,8 +4,8 @@ class UserModel extends User {
   const UserModel({
     required int id,
     required String email,
-    required String firstName,
-    required String lastName,
+    String? firstName,
+    String? lastName,
     required String type,
   }) : super(
          id: id,

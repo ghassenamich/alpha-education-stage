@@ -46,4 +46,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get start => 'Sign in to access your profile and courses.';
+
+  @override
+  String get loginfailed => 'Login failed:';
+
+  @override
+  String get wrongEmailOrPassword => 'Wrong email or password';
+
+  @override
+  String get networkError => 'Network error, please check your connection.';
+
+  @override
+  String get emailRequired => 'Email is required';
+
+  @override
+  String get invalidEmail => 'Please enter a valid email';
+
+  @override
+  String get passwordRequired => 'Password is required';
+
+  @override
+  String get passwordTooShort => 'Password must be at least 7 characters';
 }

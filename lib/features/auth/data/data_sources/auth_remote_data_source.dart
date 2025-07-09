@@ -24,7 +24,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       );
 
       final raw = response.data;
-      print("📦 Raw response: $raw");
+      print("Raw response: $raw");
 
       if (raw is Map<String, dynamic> && raw['data'] is Map<String, dynamic>) {
         final userJson = raw['data'] as Map<String, dynamic>;
@@ -32,7 +32,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         return UserModel.fromJson(userJson);
       }
 
-      throw Exception('❌ Login failed: "data" field missing or invalid');
+      throw Exception('Login failed: "data" field missing or invalid');
     } on DioException catch (e) {
       if (e.type == DioExceptionType.unknown ||
           e.type == DioExceptionType.connectionTimeout ||
