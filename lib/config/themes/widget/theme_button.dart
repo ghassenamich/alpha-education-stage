@@ -6,13 +6,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 class ThemeToggleButton extends StatelessWidget {
-  const ThemeToggleButton({super.key});
+  final Color colord;
+
+  const ThemeToggleButton({
+    Key? key,
+    this.colord = const Color.fromARGB(255, 70, 172, 255), // default
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ThemeBloc, ThemeState>(
       builder: (context, state) {
-        final isDark = state.themeMode == ThemeMode.dark;
         return GestureDetector(
           onTap: () {
             context.read<ThemeBloc>().add(ToggleTheme());
@@ -20,13 +24,13 @@ class ThemeToggleButton extends StatelessWidget {
           child: Container(
             width: 40,
             height: 40,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
-              color: Theme.of(context).colorScheme.surface,
-              ),
+              color: Colors.transparent,
+            ),
             child: Icon(
               Icons.nightlight_round,
-              color: Theme.of(context).colorScheme.primary,
+              color: colord,
               size: 22,
             ),
           ),

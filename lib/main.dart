@@ -8,6 +8,7 @@ import 'package:education/l10n/app_localizations.dart';
 import 'package:education/features/auth/presentation/bloc/login_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart'; // <-- Import this
 import 'di/service_locator.dart' as di;
 import 'config/themes/themes.dart';
 
@@ -32,21 +33,31 @@ class MyApp extends StatelessWidget {
         builder: (context, themeState) {
           return BlocBuilder<LocaleBloc, LocaleState>(
             builder: (context, localeState) {
-              return MaterialApp(
-                debugShowCheckedModeBanner: false,
-                title: 'Alpha Education',
-                theme: lightTheme,
-                darkTheme: darkTheme,
-                themeMode: themeState.themeMode, // ← THEME FROM BLOC
-                locale: localeState.locale,
-                supportedLocales: const [Locale('en'), Locale('fr')],
-                localizationsDelegates: const [
-                  AppLocalizations.delegate,
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                ],
-                home: const Mainpage(),
+              return ScreenUtilInit(
+                designSize: Size(
+                  384,
+                  805,
+                ), // Your base design size (e.g., iPhone X)
+                minTextAdapt: true,
+                splitScreenMode: true,
+                builder: (context, child) {
+                  return MaterialApp(
+                    debugShowCheckedModeBanner: false,
+                    title: 'Alpha Education',
+                    theme: lightTheme,
+                    darkTheme: darkTheme,
+                    themeMode: themeState.themeMode,
+                    locale: localeState.locale,
+                    supportedLocales: const [Locale('en'), Locale('fr')],
+                    localizationsDelegates: const [
+                      AppLocalizations.delegate,
+                      GlobalMaterialLocalizations.delegate,
+                      GlobalWidgetsLocalizations.delegate,
+                      GlobalCupertinoLocalizations.delegate,
+                    ],
+                    home: const Mainpage(),
+                  );
+                },
               );
             },
           );

@@ -1,5 +1,8 @@
-import 'package:education/core/localizations/bloc/local_bloc.dart';
-import 'package:education/core/localizations/bloc/local_event.dart';
+import 'package:education/core/mainscaffold/main_scafold.dart';
+import 'package:education/features/auth/presentation/widgets/costumtextfieelds.dart';
+import 'package:education/features/auth/presentation/widgets/customsnackbar.dart';
+import 'package:education/features/auth/presentation/widgets/languageselector.dart';
+import 'package:education/features/auth/presentation/widgets/loginbutton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/login_bloc.dart';
@@ -7,6 +10,7 @@ import '../bloc/login_event.dart';
 import '../bloc/login_state.dart';
 import 'package:education/l10n/app_localizations.dart';
 import 'package:education/config/themes/widget/theme_button.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -57,30 +61,22 @@ class _LoginPageState extends State<LoginPage> {
                       '${AppLocalizations.of(context)!.loginfailed} ${state.message}';
                 }
 
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    backgroundColor: Theme.of(context).colorScheme.surface,
-                    content: Text(
-                      message,
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.error,
-                      ),
-                    ),
-                  ),
+                showCustomSnackBar(
+                  context: context,
+                  message: message,
+                  textColor: Theme.of(context).colorScheme.error,
                 );
               }
 
               if (state is LoginSuccess) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    backgroundColor: Theme.of(context).colorScheme.surface,
-                    content: Text(
-                      AppLocalizations.of(context)!.loginSuccess,
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                  ),
+                showCustomSnackBar(
+                  context: context,
+                  message: AppLocalizations.of(context)!.loginSuccess,
+                  textColor: Theme.of(context).colorScheme.primary,
+                );
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (_) => MainScaffold()),
+                  (route) => false, // removes all previous routes
                 );
               }
             },
@@ -91,178 +87,73 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      const SizedBox(height: 100),
+                      SizedBox(height: 100.h),
                       Text(
                         AppLocalizations.of(context)!.login,
                         style: TextStyle(
-                          fontSize: 32,
+                          fontSize: 32.sp,
                           fontWeight: FontWeight.bold,
                           color: Theme.of(context).colorScheme.primary,
                         ),
                       ),
-                      const SizedBox(height: 70),
+                      SizedBox(height: 70.h),
 
                       // Email field
-                      SizedBox(
-                        width: 300,
-                        child: TextFormField(
-                          controller: emailController,
-                          cursorColor: Theme.of(context).colorScheme.primary,
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
-                          decoration: InputDecoration(
-                            labelText: AppLocalizations.of(context)!.email,
-                            labelStyle: TextStyle(
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                            ),
-                          ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return AppLocalizations.of(
-                                context,
-                              )!.emailRequired;
-                            }
-                            final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+$');
-                            if (!emailRegex.hasMatch(value)) {
-                              return AppLocalizations.of(context)!.invalidEmail;
-                            }
-                            return null;
-                          },
-                        ),
+                      CustomTextField(
+                        controller: emailController,
+                        label: AppLocalizations.of(context)!.email,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return AppLocalizations.of(context)!.emailRequired;
+                          }
+                          final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+$');
+                          if (!emailRegex.hasMatch(value)) {
+                            return AppLocalizations.of(context)!.invalidEmail;
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(height: 30.h),
+                      CustomTextField(
+                        controller: passwordController,
+                        label: AppLocalizations.of(context)!.password,
+                        isPassword: true,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return AppLocalizations.of(
+                              context,
+                            )!.passwordRequired;
+                          }
+                          if (value.length < 7) {
+                            return AppLocalizations.of(
+                              context,
+                            )!.passwordTooShort;
+                          }
+                          return null;
+                        },
                       ),
 
-                      const SizedBox(height: 30),
-
-                      // Password field
-                      SizedBox(
-                        width: 300,
-                        child: TextFormField(
-                          controller: passwordController,
-                          obscureText: true,
-                          cursorColor: Theme.of(context).colorScheme.primary,
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
-                          decoration: InputDecoration(
-                            labelText: AppLocalizations.of(context)!.password,
-                            labelStyle: TextStyle(
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                            ),
-                          ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return AppLocalizations.of(
-                                context,
-                              )!.passwordRequired;
-                            }
-                            if (value.length < 7) {
-                              return AppLocalizations.of(
-                                context,
-                              )!.passwordTooShort;
-                            }
-                            return null;
-                          },
-                        ),
-                      ),
-
-                      const SizedBox(height: 70),
+                      SizedBox(height: 70.h),
 
                       // Login button
-                      Container(
-                        width: 200,
-                        height: 65,
-                        decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                              Color.fromARGB(255, 48, 48, 255),
-                              Color.fromARGB(255, 70, 172, 255),
-                            ],
-                          ),
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(30),
-                          onTap: _onLoginPressed,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 12,
-                              horizontal: 24,
-                            ),
-                            child: Center(
-                              child: state is LoginLoading
-                                  ? const CircularProgressIndicator(
-                                      color: Colors.white,
-                                      strokeWidth: 2,
-                                    )
-                                  : Text(
-                                      AppLocalizations.of(context)!.log,
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                            ),
-                          ),
-                        ),
+                      LoginButton(
+                        onPressed: _onLoginPressed,
+                        isLoading: state is LoginLoading,
+                        label: AppLocalizations.of(context)!.log,
                       ),
 
-                      const SizedBox(height: 70),
+                      SizedBox(height: 70.h),
 
                       // Language selector + Theme toggle
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          PopupMenuButton<Locale>(
-                            icon: Icon(
-                              Icons.language,
-                              color: Theme.of(context).colorScheme.primary,
+                          const LanguageSelector(),
+                          Padding(
+                            padding: EdgeInsets.all(16.w),
+                            child: ThemeToggleButton(
+                              colord: Theme.of(context).colorScheme.primary,
                             ),
-                            onSelected: (locale) {
-                              context.read<LocaleBloc>().add(SetLocale(locale));
-                            },
-                            itemBuilder: (context) => [
-                              PopupMenuItem(
-                                value: const Locale('en'),
-                                child: Text(
-                                  'English',
-                                  style: TextStyle(
-                                    color: Theme.of(
-                                      context,
-                                    ).colorScheme.primary,
-                                  ),
-                                ),
-                              ),
-                              PopupMenuItem(
-                                value: const Locale('fr'),
-                                child: Text(
-                                  'Français',
-                                  style: TextStyle(
-                                    color: Theme.of(
-                                      context,
-                                    ).colorScheme.primary,
-                                  ),
-                                ),
-                              ),
-                            ],
-                            color: Theme.of(context).colorScheme.surface,
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.all(16.0),
-                            child: ThemeToggleButton(),
                           ),
                         ],
                       ),

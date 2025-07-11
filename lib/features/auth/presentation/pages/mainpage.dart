@@ -1,3 +1,4 @@
+import 'package:education/config/themes/widget/theme_button.dart';
 import 'package:education/core/localizations/bloc/local_bloc.dart';
 import 'package:education/core/localizations/bloc/local_event.dart';
 import 'package:education/features/auth/presentation/pages/loginpage.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:education/l10n/app_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Mainpage extends StatelessWidget {
   const Mainpage({super.key});
@@ -26,8 +28,8 @@ class Mainpage extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              const Color.fromARGB(255, 48, 48, 255),
-              const Color.fromARGB(255, 70, 172, 255),
+              Theme.of(context).colorScheme.onSurface,
+              Theme.of(context).colorScheme.onSurfaceVariant,
             ],
           ),
         ),
@@ -37,58 +39,58 @@ class Mainpage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  const SizedBox(height: 156),
+                  SizedBox(height: 156.h),
                   Text(
                     AppLocalizations.of(context)!.welcome,
                     style: TextStyle(
-                      fontSize: 35,
-                      color: Colors.white,
+                      fontSize: 35.sp,
+                      color: Theme.of(context).colorScheme.onPrimary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20.h),
                   Image.asset(
                     'assets/images/image.png',
-                    width: 200,
-                    height: 200,
+                    width: 200.w,
+                    height: 200.h,
+                    color: Theme.of(context).colorScheme.onPrimary,
                   ),
 
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20.h),
                   Text(
                     AppLocalizations.of(context)!.mobileApp,
                     style: TextStyle(
-                      fontSize: 35,
-                      color: Colors.white,
+                      fontSize: 35.sp,
+                      color: Theme.of(context).colorScheme.onPrimary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Container(
-                    
                     child: Text(
                       AppLocalizations.of(context)!.start,
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                      style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: 20.sp),
                     ),
                   ),
 
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20.h),
 
                   Container(
-                    width: 200,
-                    height: 65,
+                    width: 200.w,
+                    height: 65.h,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: [
-                          const Color.fromARGB(255, 255, 82, 52),
-                          const Color.fromARGB(255, 255, 128, 97),
+                          Theme.of(context).colorScheme.secondary,
+                          Theme.of(context).colorScheme.onSecondary,
                         ],
                       ),
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(30.r),
                     ),
                     child: InkWell(
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(30.r),
                       onTap: () {
                         Navigator.push(
                           context,
@@ -97,15 +99,15 @@ class Mainpage extends StatelessWidget {
                       },
                       child: Padding(
                         padding: EdgeInsets.symmetric(
-                          vertical: 12,
-                          horizontal: 24,
+                          vertical: 12.h,
+                          horizontal: 24.w,
                         ),
                         child: Center(
                           child: Text(
                             AppLocalizations.of(context)!.getStarted,
                             style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
+                              color: Theme.of(context).colorScheme.surface,
+                              fontSize: 20.sp,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -113,23 +115,45 @@ class Mainpage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 90),
-                  PopupMenuButton<Locale>(
-                    icon: const Icon(Icons.language, color: Colors.white),
-                    onSelected: (locale) {
-                      context.read<LocaleBloc>().add(SetLocale(locale));
-                    },
-                    itemBuilder: (context) => [
-                      const PopupMenuItem(
-                        value: Locale('en'),
-                        child: Text('English'),
+                  SizedBox(height: 90.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      PopupMenuButton<Locale>(
+                        icon: Icon(
+                          Icons.language,
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        ),
+                        onSelected: (locale) {
+                          context.read<LocaleBloc>().add(SetLocale(locale));
+                        },
+                        itemBuilder: (context) => [
+                          PopupMenuItem(
+                            value: const Locale('en'),
+                            child: Text(
+                              'English',
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.onPrimary,
+                              ),
+                            ),
+                          ),
+                          PopupMenuItem(
+                            value: const Locale('fr'),
+                            child: Text(
+                              'Français',
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.onPrimary,
+                              ),
+                            ),
+                          ),
+                        ],
+                        color: Theme.of(context).colorScheme.surface,
                       ),
-                      const PopupMenuItem(
-                        value: Locale('fr'),
-                        child: Text('Français'),
+                      Padding(
+                        padding: EdgeInsets.all(16.w),
+                        child: ThemeToggleButton(colord: Theme.of(context).colorScheme.onPrimary,),
                       ),
                     ],
-                    color: Colors.white,
                   ),
                 ],
               ),
