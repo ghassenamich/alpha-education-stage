@@ -11,7 +11,7 @@ class LanguageSelector extends StatelessWidget {
       value: locale,
       child: Text(
         label,
-        style: TextStyle(color: Theme.of(context).colorScheme.primary),
+        style: TextStyle(fontFamily: 'roboto',color: Theme.of(context).colorScheme.primary),
       ),
     );
   }

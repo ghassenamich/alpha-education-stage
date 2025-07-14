@@ -43,6 +43,7 @@ class Mainpage extends StatelessWidget {
                   Text(
                     AppLocalizations.of(context)!.welcome,
                     style: TextStyle(
+                      fontFamily: 'roboto',
                       fontSize: 35.sp,
                       color: Theme.of(context).colorScheme.onPrimary,
                       fontWeight: FontWeight.bold,
@@ -60,6 +61,7 @@ class Mainpage extends StatelessWidget {
                   Text(
                     AppLocalizations.of(context)!.mobileApp,
                     style: TextStyle(
+                      fontFamily: 'roboto',
                       fontSize: 35.sp,
                       color: Theme.of(context).colorScheme.onPrimary,
                       fontWeight: FontWeight.bold,
@@ -69,7 +71,11 @@ class Mainpage extends StatelessWidget {
                     child: Text(
                       AppLocalizations.of(context)!.start,
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: 20.sp),
+                      style: TextStyle(
+                        fontFamily: 'roboto',
+                        color: Theme.of(context).colorScheme.onPrimary,
+                        fontSize: 20.sp,
+                      ),
                     ),
                   ),
 
@@ -106,6 +112,7 @@ class Mainpage extends StatelessWidget {
                           child: Text(
                             AppLocalizations.of(context)!.getStarted,
                             style: TextStyle(
+                              fontFamily: 'roboto',
                               color: Theme.of(context).colorScheme.surface,
                               fontSize: 20.sp,
                               fontWeight: FontWeight.bold,
@@ -151,7 +158,9 @@ class Mainpage extends StatelessWidget {
                       ),
                       Padding(
                         padding: EdgeInsets.all(16.w),
-                        child: ThemeToggleButton(colord: Theme.of(context).colorScheme.onPrimary,),
+                        child: ThemeToggleButton(
+                          colord: Theme.of(context).colorScheme.onPrimary,
+                        ),
                       ),
                     ],
                   ),

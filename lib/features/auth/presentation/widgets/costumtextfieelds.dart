@@ -24,10 +24,10 @@ class CustomTextField extends StatelessWidget {
         controller: controller,
         obscureText: isPassword,
         cursorColor: color,
-        style: TextStyle(color: color),
+        style: TextStyle(fontFamily: 'roboto',color: color),
         decoration: InputDecoration(
           labelText: label,
-          labelStyle: TextStyle(color: color),
+          labelStyle: TextStyle(fontFamily: 'roboto',color: color),
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: color),
           ),

@@ -91,6 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                       Text(
                         AppLocalizations.of(context)!.login,
                         style: TextStyle(
+                          fontFamily: 'roboto',
                           fontSize: 32.sp,
                           fontWeight: FontWeight.bold,
                           color: Theme.of(context).colorScheme.primary,

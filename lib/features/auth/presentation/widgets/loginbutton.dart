@@ -40,7 +40,7 @@ class LoginButton extends StatelessWidget {
                 )
               : Text(
                   label,
-                  style: TextStyle(
+                  style: TextStyle(fontFamily: 'roboto',
                     color: Theme.of(context).colorScheme.surface,
                     fontSize: 20.sp,
                     fontWeight: FontWeight.bold,

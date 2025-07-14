@@ -13,7 +13,7 @@ void showCustomSnackBar({
       backgroundColor: backgroundColor ?? theme.colorScheme.surface,
       content: Text(
         message,
-        style: TextStyle(color: textColor),
+        style: TextStyle(fontFamily: 'roboto',color: textColor),
       ),
     ),
   );
