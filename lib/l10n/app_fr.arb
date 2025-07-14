@@ -22,6 +22,7 @@
     "emailRequired": "L'e-mail est requis",
     "invalidEmail": "Veuillez entrer un e-mail valide",
     "passwordRequired": "Le mot de passe est requis",
-    "passwordTooShort": "Le mot de passe doit comporter au moins 7 caractères"
+    "passwordTooShort": "Le mot de passe doit comporter au moins 7 caractères",
+    "welcomeBack": "Bienvenue de nouveau"
     
 }

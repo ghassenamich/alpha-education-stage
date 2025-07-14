@@ -16,21 +16,21 @@ class LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200.w,
+      width: 270.w,
       height: 65.h,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Theme.of(context).colorScheme.primary.withValues(alpha: 200),
-            Theme.of(context).colorScheme.primary,
+            Theme.of(context).colorScheme.onPrimaryContainer,
+            Theme.of(context).colorScheme.onPrimaryContainer,
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
-        borderRadius: BorderRadius.circular(30.r),
+        borderRadius: BorderRadius.circular(15.r),
       ),
       child: InkWell(
-        borderRadius: BorderRadius.circular(30.r),
+        borderRadius: BorderRadius.circular(15.r),
         onTap: onPressed,
         child: Center(
           child: isLoading
@@ -41,7 +41,7 @@ class LoginButton extends StatelessWidget {
               : Text(
                   label,
                   style: TextStyle(fontFamily: 'roboto',
-                    color: Theme.of(context).colorScheme.surface,
+                    color: Colors.white,
                     fontSize: 20.sp,
                     fontWeight: FontWeight.bold,
                   ),

@@ -67,4 +67,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get passwordTooShort => 'Password must be at least 7 characters';
+
+  @override
+  String get welcomeBack => 'Welcome Back';
 }

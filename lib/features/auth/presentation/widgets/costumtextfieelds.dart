@@ -19,7 +19,7 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = Theme.of(context).colorScheme.primary;
     return SizedBox(
-      width: 300.w,
+      width: 270.w,
       child: TextFormField(
         controller: controller,
         obscureText: isPassword,

@@ -39,9 +39,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-      ),
+
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
@@ -87,17 +85,36 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      SizedBox(height: 100.h),
+                      SizedBox(height: 70.h),
                       Text(
-                        AppLocalizations.of(context)!.login,
+                        AppLocalizations.of(context)!.welcomeBack,
                         style: TextStyle(
                           fontFamily: 'roboto',
                           fontSize: 32.sp,
                           fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.primary,
+                          color: Theme.of(context).colorScheme.onError,
                         ),
                       ),
-                      SizedBox(height: 70.h),
+                      SizedBox(height: 20.h),
+                      Stack(alignment: Alignment.center,
+                        children: [
+                          Container(
+                            height: 150.h,
+                            width: 150.w,
+                            decoration: BoxDecoration(
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.primaryContainer,
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                          Image.asset(
+                            'assets/images/image.png',
+                            width: 200.w,
+                            height: 200.h,
+                          ),
+                        ],
+                      ),
 
                       // Email field
                       CustomTextField(
@@ -143,7 +160,7 @@ class _LoginPageState extends State<LoginPage> {
                         label: AppLocalizations.of(context)!.log,
                       ),
 
-                      SizedBox(height: 70.h),
+                      SizedBox(height: 40.h),
 
                       // Language selector + Theme toggle
                       Row(

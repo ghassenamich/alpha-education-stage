@@ -22,5 +22,6 @@
     "emailRequired": "Email is required",
     "invalidEmail": "Please enter a valid email",
     "passwordRequired": "Password is required",
-    "passwordTooShort": "Password must be at least 7 characters"
+    "passwordTooShort": "Password must be at least 7 characters",
+    "welcomeBack": "Welcome Back"
 }

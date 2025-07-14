@@ -70,4 +70,7 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get passwordTooShort =>
       'Le mot de passe doit comporter au moins 7 caractères';
+
+  @override
+  String get welcomeBack => 'Bienvenue de nouveau';
 }

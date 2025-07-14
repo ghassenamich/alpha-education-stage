@@ -54,7 +54,6 @@ class Mainpage extends StatelessWidget {
                     'assets/images/image.png',
                     width: 200.w,
                     height: 200.h,
-                    color: Theme.of(context).colorScheme.onPrimary,
                   ),
 
                   SizedBox(height: 20.h),
@@ -67,15 +66,13 @@ class Mainpage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Container(
-                    child: Text(
-                      AppLocalizations.of(context)!.start,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: 'roboto',
-                        color: Theme.of(context).colorScheme.onPrimary,
-                        fontSize: 20.sp,
-                      ),
+                  Text(
+                    AppLocalizations.of(context)!.start,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: 'roboto',
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      fontSize: 20.sp,
                     ),
                   ),
 
@@ -113,7 +110,7 @@ class Mainpage extends StatelessWidget {
                             AppLocalizations.of(context)!.getStarted,
                             style: TextStyle(
                               fontFamily: 'roboto',
-                              color: Theme.of(context).colorScheme.surface,
+                              color: Theme.of(context).colorScheme.onError,
                               fontSize: 20.sp,
                               fontWeight: FontWeight.bold,
                             ),
