@@ -223,6 +223,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Welcome Back'**
   String get welcomeBack;
+
+  /// No description provided for @settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
+
+  /// No description provided for @profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profile;
+
+  /// No description provided for @home.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get home;
+
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logout;
+
+  /// No description provided for @languages.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get languages;
+
+  /// No description provided for @darkMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark Mode'**
+  String get darkMode;
+
+  /// No description provided for @notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notifications;
+
+  /// No description provided for @about.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get about;
+
+  /// No description provided for @courses.
+  ///
+  /// In en, this message translates to:
+  /// **'Courses'**
+  String get courses;
+
+  /// No description provided for @appdescription.
+  ///
+  /// In en, this message translates to:
+  /// **'This is a sample application for educational purposes.'**
+  String get appdescription;
+
+  /// No description provided for @contactUs.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Us'**
+  String get contactUs;
+
+  /// No description provided for @privacyPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get privacyPolicy;
+
+  /// No description provided for @termsOfService.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of Service'**
+  String get termsOfService;
+
+  /// No description provided for @help.
+  ///
+  /// In en, this message translates to:
+  /// **'Help'**
+  String get help;
+
+  /// No description provided for @changePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Password'**
+  String get changePassword;
+
+  /// No description provided for @phonenumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get phonenumber;
+
+  /// No description provided for @anonymousUser.
+  ///
+  /// In en, this message translates to:
+  /// **'Anonymous'**
+  String get anonymousUser;
+
+  /// No description provided for @userType.
+  ///
+  /// In en, this message translates to:
+  /// **'User Type'**
+  String get userType;
 }
 
 class _AppLocalizationsDelegate

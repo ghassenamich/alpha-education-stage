@@ -70,4 +70,59 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get welcomeBack => 'Welcome Back';
+
+  @override
+  String get settings => 'Settings';
+
+  @override
+  String get profile => 'Profile';
+
+  @override
+  String get home => 'Home';
+
+  @override
+  String get logout => 'Logout';
+
+  @override
+  String get languages => 'Language';
+
+  @override
+  String get darkMode => 'Dark Mode';
+
+  @override
+  String get notifications => 'Notifications';
+
+  @override
+  String get about => 'About';
+
+  @override
+  String get courses => 'Courses';
+
+  @override
+  String get appdescription =>
+      'This is a sample application for educational purposes.';
+
+  @override
+  String get contactUs => 'Contact Us';
+
+  @override
+  String get privacyPolicy => 'Privacy Policy';
+
+  @override
+  String get termsOfService => 'Terms of Service';
+
+  @override
+  String get help => 'Help';
+
+  @override
+  String get changePassword => 'Change Password';
+
+  @override
+  String get phonenumber => 'Phone Number';
+
+  @override
+  String get anonymousUser => 'Anonymous';
+
+  @override
+  String get userType => 'User Type';
 }

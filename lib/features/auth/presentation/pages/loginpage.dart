@@ -1,7 +1,9 @@
 import 'package:education/core/mainscaffold/main_scafold.dart';
+import 'package:education/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:education/features/auth/presentation/bloc/auth_event.dart';
 import 'package:education/features/auth/presentation/widgets/costumtextfieelds.dart';
 import 'package:education/features/auth/presentation/widgets/customsnackbar.dart';
-import 'package:education/features/auth/presentation/widgets/languageselector.dart';
+import 'package:education/core/localizations/widgets/languageselector.dart';
 import 'package:education/features/auth/presentation/widgets/loginbutton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -72,9 +74,17 @@ class _LoginPageState extends State<LoginPage> {
                   message: AppLocalizations.of(context)!.loginSuccess,
                   textColor: Theme.of(context).colorScheme.primary,
                 );
+
+                final user = state.user;
+
                 Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (_) => MainScaffold()),
-                  (route) => false, // removes all previous routes
+                  MaterialPageRoute(
+                    builder: (_) => BlocProvider(
+                      create: (_) => AuthBloc()..add(SetUserEvent(user)),
+                      child: const MainScaffold(),
+                    ),
+                  ),
+                  (route) => false,
                 );
               }
             },
@@ -96,7 +106,8 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       SizedBox(height: 20.h),
-                      Stack(alignment: Alignment.center,
+                      Stack(
+                        alignment: Alignment.center,
                         children: [
                           Container(
                             height: 150.h,
@@ -162,7 +173,6 @@ class _LoginPageState extends State<LoginPage> {
 
                       SizedBox(height: 40.h),
 
-                      // Language selector + Theme toggle
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -170,7 +180,9 @@ class _LoginPageState extends State<LoginPage> {
                           Padding(
                             padding: EdgeInsets.all(16.w),
                             child: ThemeToggleButton(
-                              colord: Theme.of(context).colorScheme.primary,
+                              size: 16.w,
+                              icon: Icons.nightlight_round,
+                              iconColor: Theme.of(context).colorScheme.primary,
                             ),
                           ),
                         ],

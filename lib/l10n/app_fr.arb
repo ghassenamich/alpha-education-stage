@@ -23,6 +23,24 @@
     "invalidEmail": "Veuillez entrer un e-mail valide",
     "passwordRequired": "Le mot de passe est requis",
     "passwordTooShort": "Le mot de passe doit comporter au moins 7 caractères",
-    "welcomeBack": "Bienvenue de nouveau"
+    "welcomeBack": "Bienvenue de nouveau",
+    "settings": "Paramètres",
+    "profile": "Profil",
+    "home": "Accueil",
+    "logout": "Déconnexion",
+    "languages": "Langue",
+    "darkMode": "Mode sombre",
+    "notifications": "Notifications",
+    "about": "À propos",
+    "courses": "Cours",
+    "appdescription": "Ceci est une application d'exemple à des fins éducatives.",
+    "contactUs": "Contactez-nous",
+    "privacyPolicy": "Politique de confidentialité",
+    "termsOfService": "Conditions d'utilisation",
+    "help": "Aide",
+    "changePassword": "Changer le mot de passe",
+    "phonenumber": "Numéro de téléphone",
+    "anonymousUser": "Anonyme",
+    "userType": "Type d'utilisateur"
     
 }

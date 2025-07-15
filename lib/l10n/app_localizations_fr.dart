@@ -73,4 +73,59 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get welcomeBack => 'Bienvenue de nouveau';
+
+  @override
+  String get settings => 'Paramètres';
+
+  @override
+  String get profile => 'Profil';
+
+  @override
+  String get home => 'Accueil';
+
+  @override
+  String get logout => 'Déconnexion';
+
+  @override
+  String get languages => 'Langue';
+
+  @override
+  String get darkMode => 'Mode sombre';
+
+  @override
+  String get notifications => 'Notifications';
+
+  @override
+  String get about => 'À propos';
+
+  @override
+  String get courses => 'Cours';
+
+  @override
+  String get appdescription =>
+      'Ceci est une application d\'exemple à des fins éducatives.';
+
+  @override
+  String get contactUs => 'Contactez-nous';
+
+  @override
+  String get privacyPolicy => 'Politique de confidentialité';
+
+  @override
+  String get termsOfService => 'Conditions d\'utilisation';
+
+  @override
+  String get help => 'Aide';
+
+  @override
+  String get changePassword => 'Changer le mot de passe';
+
+  @override
+  String get phonenumber => 'Numéro de téléphone';
+
+  @override
+  String get anonymousUser => 'Anonyme';
+
+  @override
+  String get userType => 'Type d\'utilisateur';
 }

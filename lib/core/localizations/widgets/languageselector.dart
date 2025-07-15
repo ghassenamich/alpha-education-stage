@@ -4,14 +4,24 @@ import 'package:education/core/localizations/bloc/local_bloc.dart';
 import 'package:education/core/localizations/bloc/local_event.dart';
 
 class LanguageSelector extends StatelessWidget {
-  const LanguageSelector({super.key});
+  final IconData? iconData;
+  final Widget? customIcon;
+
+  const LanguageSelector({
+    super.key,
+    this.iconData,
+    this.customIcon,
+  });
 
   PopupMenuItem<Locale> _buildMenuItem(BuildContext context, Locale locale, String label) {
     return PopupMenuItem(
       value: locale,
       child: Text(
         label,
-        style: TextStyle(fontFamily: 'roboto',color: Theme.of(context).colorScheme.primary),
+        style: TextStyle(
+          fontFamily: 'roboto',
+          color: Theme.of(context).colorScheme.primary,
+        ),
       ),
     );
   }
@@ -19,10 +29,11 @@ class LanguageSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<Locale>(
-      icon: Icon(
-        Icons.language,
-        color: Theme.of(context).colorScheme.primary,
-      ),
+      icon: customIcon ??
+          Icon(
+            iconData ?? Icons.language,
+            color: Theme.of(context).colorScheme.primary,
+          ),
       onSelected: (locale) {
         context.read<LocaleBloc>().add(SetLocale(locale));
       },

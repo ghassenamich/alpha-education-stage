@@ -1,4 +1,5 @@
 import 'package:education/features/courses/presentation/pages/cours_page.dart';
+import 'package:education/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:education/features/home/presentation/pages/home_page.dart';
 import 'package:education/features/profile/presentation/pages/profile_page.dart';
@@ -35,22 +36,22 @@ class _MainScaffoldState extends State<MainScaffold> {
         selectedItemColor: Theme.of(context).colorScheme.primary,
         unselectedItemColor: Colors.grey,
         type: BottomNavigationBarType.fixed,
-        items: const [
+        items:  [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: AppLocalizations.of(context)!.home,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.school),
-            label: 'Courses',
+            label: AppLocalizations.of(context)!.courses,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'Profile',
+            label: AppLocalizations.of(context)!.profile,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            label: 'Settings',
+            label: AppLocalizations.of(context)!.settings,
           ),
         ],
       ),

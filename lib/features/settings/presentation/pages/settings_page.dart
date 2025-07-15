@@ -1,5 +1,8 @@
+import 'package:education/features/settings/presentation/widgets/theme_toggle_tile.dart';
+import 'package:education/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:education/core/localizations/widgets/languageselector.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -10,7 +13,7 @@ class SettingsPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: theme.surface,
-      appBar: AppBar(title: const Text('Settings')),
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.settings)),
       body: ListView(
         padding: EdgeInsets.all(16.w),
         children: [
@@ -18,14 +21,14 @@ class SettingsPage extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.language, color: theme.primary),
             title: Text(
-              'Language',
+              AppLocalizations.of(context)!.languages,
               style: TextStyle(
                 fontSize: 18.sp,
                 fontWeight: FontWeight.w500,
                 color: theme.primary,
               ),
             ),
-            trailing: Icon(Icons.chevron_right),
+            trailing: const LanguageSelector(iconData: Icons.arrow_drop_down),
             onTap: () {
               // Navigate to language screen or show dialog
             },
@@ -34,21 +37,7 @@ class SettingsPage extends StatelessWidget {
           Divider(),
 
           // 🌙 Dark Mode Toggle
-          SwitchListTile(
-            secondary: Icon(Icons.dark_mode, color: theme.primary),
-            title: Text(
-              'Dark Mode',
-              style: TextStyle(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.w500,
-                color: theme.primary,
-              ),
-            ),
-            value: Theme.of(context).brightness == Brightness.dark,
-            onChanged: (value) {
-              // Trigger your ThemeBloc or toggle method
-            },
-          ),
+          ThemeToggleTile(),
 
           Divider(),
 
@@ -56,7 +45,7 @@ class SettingsPage extends StatelessWidget {
           SwitchListTile(
             secondary: Icon(Icons.notifications_active, color: theme.primary),
             title: Text(
-              'Notifications',
+              AppLocalizations.of(context)!.notifications,
               style: TextStyle(
                 fontSize: 18.sp,
                 fontWeight: FontWeight.w500,
@@ -74,29 +63,74 @@ class SettingsPage extends StatelessWidget {
           // ℹ️ About
           ListTile(
             leading: Icon(Icons.info_outline, color: theme.primary),
-            title: Text('About'
-            ,
+            title: Text(
+              AppLocalizations.of(context)!.about,
               style: TextStyle(
                 fontSize: 18.sp,
                 fontWeight: FontWeight.w500,
                 color: theme.primary,
-              ),),
+              ),
+            ),
             trailing: const Icon(Icons.chevron_right),
             onTap: () {
-              // Navigate to about page
+              final theme = Theme.of(context).colorScheme;
+
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  backgroundColor: theme.surface,
+                  title: Text(
+                    AppLocalizations.of(context)!.welcome,
+                    style: TextStyle(
+                      color: theme.primary,
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Version 1.0.0',
+                        style: TextStyle(
+                          color: theme.primary,
+                          fontSize: 14.sp,
+                        ),
+                      ),
+                      SizedBox(height: 12.h),
+                      Text(
+                        AppLocalizations.of(context)!.appdescription,
+                        style: TextStyle(
+                          color: theme.primary,
+                          fontSize: 16.sp,
+                        ),
+                      ),
+                    ],
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: Text(
+                        MaterialLocalizations.of(context).closeButtonLabel,
+                        style: TextStyle(color: theme.primary),
+                      ),
+                    ),
+                  ],
+                ),
+              );
             },
           ),
 
           Divider(),
 
-          // 🚪 Log out
           SizedBox(height: 30.h),
           OutlinedButton.icon(
             onPressed: () {
               // Log out logic
             },
             icon: const Icon(Icons.logout),
-            label: const Text('Log Out'),
+            label: Text(AppLocalizations.of(context)!.logout),
             style: OutlinedButton.styleFrom(
               minimumSize: Size(double.infinity, 48.h),
             ),

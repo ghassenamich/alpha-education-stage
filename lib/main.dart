@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
                 designSize: Size(
                   384,
                   805,
-                ), // Your base design size (e.g., iPhone X)
+                ), 
                 minTextAdapt: true,
                 splitScreenMode: true,
                 builder: (context, child) {

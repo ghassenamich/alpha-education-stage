@@ -155,8 +155,9 @@ class Mainpage extends StatelessWidget {
                       ),
                       Padding(
                         padding: EdgeInsets.all(16.w),
-                        child: ThemeToggleButton(
-                          colord: Theme.of(context).colorScheme.onPrimary,
+                        child: ThemeToggleButton(size: 16.w,
+                          icon: Icons.nightlight_round,
+                          iconColor: Theme.of(context).colorScheme.onPrimary,
                         ),
                       ),
                     ],

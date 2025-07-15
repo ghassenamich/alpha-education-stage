@@ -23,5 +23,24 @@
     "invalidEmail": "Please enter a valid email",
     "passwordRequired": "Password is required",
     "passwordTooShort": "Password must be at least 7 characters",
-    "welcomeBack": "Welcome Back"
+    "welcomeBack": "Welcome Back",
+    "settings": "Settings",
+    "profile": "Profile",
+    "home": "Home",
+    "logout": "Logout",
+    "languages": "Language",
+    "darkMode": "Dark Mode",
+    "notifications": "Notifications",
+    "about": "About",
+    "courses": "Courses",
+    "appdescription": "This is a sample application for educational purposes.",
+    "contactUs": "Contact Us",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "help": "Help",
+    "changePassword": "Change Password",
+    "phonenumber": "Phone Number",
+    "anonymousUser": "Anonymous",
+    "userType": "User Type"
+
 }
