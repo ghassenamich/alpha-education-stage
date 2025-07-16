@@ -331,6 +331,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'User Type'**
   String get userType;
+
+  /// No description provided for @weLcome.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome'**
+  String get weLcome;
+
+  /// No description provided for @enrolledCourses.
+  ///
+  /// In en, this message translates to:
+  /// **'Enrolled Courses'**
+  String get enrolledCourses;
+
+  /// No description provided for @startLearning.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Learning'**
+  String get startLearning;
 }
 
 class _AppLocalizationsDelegate

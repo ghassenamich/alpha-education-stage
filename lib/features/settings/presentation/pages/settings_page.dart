@@ -122,19 +122,8 @@ class SettingsPage extends StatelessWidget {
             },
           ),
 
-          Divider(),
-
-          SizedBox(height: 30.h),
-          OutlinedButton.icon(
-            onPressed: () {
-              // Log out logic
-            },
-            icon: const Icon(Icons.logout),
-            label: Text(AppLocalizations.of(context)!.logout),
-            style: OutlinedButton.styleFrom(
-              minimumSize: Size(double.infinity, 48.h),
-            ),
-          ),
+          
+          
         ],
       ),
     );

@@ -41,6 +41,9 @@
     "changePassword": "Changer le mot de passe",
     "phonenumber": "Numéro de téléphone",
     "anonymousUser": "Anonyme",
-    "userType": "Type d'utilisateur"
+    "userType": "Type d'utilisateur",
+    "weLcome": "Bienvenue",
+    "enrolledCourses": "Cours inscrits",
+    "startLearning": "Commencer à apprendre"
     
 }

@@ -1,12 +1,27 @@
+import 'package:education/di/service_locator.dart';
+import 'package:education/features/auth/presentation/pages/loginpage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:education/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:education/features/auth/domain/entities/user.dart';
 import 'package:education/l10n/app_localizations.dart';
+import 'package:education/features/auth/domain/usecases/logout_user.dart';
+import 'package:education/features/auth/data/repository/auth_repository_impl.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
+
+  Future<void> _logout(BuildContext context) async {
+    final logout = LogoutUser(AuthRepositoryImpl(sl()));
+    await logout();
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => LoginPage()),
+    );
+    ;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +32,11 @@ class ProfilePage extends StatelessWidget {
       return const Center(child: Text("User data not loaded."));
     }
 
-    final fullName =
-        '${user.firstName ?? ''} ${user.lastName ?? ''}'.trim();
+    final fullName = '${user.firstName ?? ''} ${user.lastName ?? ''}'.trim();
 
     return Scaffold(
       backgroundColor: theme.surface,
-      appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.profile),
-      ),
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.profile,style: TextStyle(fontFamily: "roboto"),)),
       body: ListView(
         padding: EdgeInsets.all(16.w),
         children: [
@@ -38,20 +50,20 @@ class ProfilePage extends StatelessWidget {
                 ),
                 SizedBox(height: 12.h),
                 Text(
-                  fullName.isNotEmpty ? fullName : AppLocalizations.of(context)!.anonymousUser,
+                  fullName.isNotEmpty
+                      ? fullName
+                      : AppLocalizations.of(context)!.anonymousUser,
                   style: TextStyle(
                     fontSize: 20.sp,
                     fontWeight: FontWeight.bold,
                     color: theme.primary,
+                    fontFamily: 'roboto',
                   ),
                 ),
                 SizedBox(height: 4.h),
                 Text(
                   user.email,
-                  style: TextStyle(
-                    color: theme.primary,
-                    fontSize: 14.sp,
-                  ),
+                  style: TextStyle(color: theme.primary, fontSize: 14.sp, fontFamily: fullName),
                 ),
               ],
             ),
@@ -61,31 +73,29 @@ class ProfilePage extends StatelessWidget {
 
           ListTile(
             leading: Icon(Icons.badge, color: theme.primary),
-            title: Text(AppLocalizations.of(context)!.userType, 
+            title: Text(
+              AppLocalizations.of(context)!.userType,
               style: TextStyle(
                 fontSize: 18.sp,
                 fontWeight: FontWeight.w500,
                 color: theme.primary,
+                fontFamily: 'roboto',
               ),
             ),
-            subtitle: Text(user.type, 
-              style: TextStyle(
-                color: theme.primary,
-                fontSize: 16.sp,
-              ),
+            subtitle: Text(
+              user.type,
+              style: TextStyle(color: theme.primary, fontSize: 16.sp,fontFamily: 'roboto'),
             ),
           ),
 
           Divider(height: 32.h),
 
           OutlinedButton.icon(
-            onPressed: () {
-              // Trigger logout if needed
-            },
+            onPressed: () => _logout(context),
             icon: Icon(Icons.logout, color: theme.primary),
             label: Text(
               AppLocalizations.of(context)!.logout,
-              style: TextStyle(color: theme.primary),
+              style: TextStyle(color: theme.primary, fontSize: 16.sp, fontFamily: 'roboto'),
             ),
             style: OutlinedButton.styleFrom(
               side: BorderSide(color: theme.primary),

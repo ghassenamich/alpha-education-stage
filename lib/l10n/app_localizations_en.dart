@@ -125,4 +125,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get userType => 'User Type';
+
+  @override
+  String get weLcome => 'Welcome';
+
+  @override
+  String get enrolledCourses => 'Enrolled Courses';
+
+  @override
+  String get startLearning => 'Start Learning';
 }

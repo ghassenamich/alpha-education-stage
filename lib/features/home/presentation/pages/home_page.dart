@@ -1,39 +1,82 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:education/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:education/features/auth/domain/entities/user.dart';
+import 'package:education/l10n/app_localizations.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).colorScheme;
+    final user = context.select<AuthBloc, User?>((bloc) => bloc.state.user);
+
+    final name = user?.firstName ?? AppLocalizations.of(context)!.anonymousUser;
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
-      body: Container(
-        alignment: Alignment.center,
-        color: Theme.of(context).colorScheme.surface,
+      backgroundColor: theme.surface,
+      appBar: AppBar(
+        title: Text(AppLocalizations.of(context)!.home),
+        elevation: 0,
+        backgroundColor: theme.surface,
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16.w),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Home Page',
+              '${AppLocalizations.of(context)!.weLcome}, $name!',
               style: TextStyle(
                 fontSize: 24.sp,
-                color: Theme.of(context).colorScheme.primary,
                 fontWeight: FontWeight.bold,
+                color: theme.primary,
               ),
             ),
-            SizedBox(height: 20.h),
-            ElevatedButton(
-              onPressed: () {
-                // Action when button is pressed
-              },
-              style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
-                textStyle: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+            SizedBox(height: 24.h),
+
+            // Example Card 1
+            Card(
+              elevation: 2,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
+              child: Padding(
+                padding: EdgeInsets.all(16.w),
+                child: Row(
+                  children: [
+                    Icon(Icons.book, size: 32.sp, color: theme.primary),
+                    SizedBox(width: 12.w),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(AppLocalizations.of(context)!.enrolledCourses,
+                            style: TextStyle(
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w500,
+                                color: theme.onSurface)),
+                        Text('5', style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold)),
+                      ],
+                    )
+                  ],
+                ),
               ),
-              child: Text(
-                'Go to Home Details',
-                style: TextStyle(color: Theme.of(context).colorScheme.primary),
+            ),
+
+            SizedBox(height: 16.h),
+
+            // Example Action Button
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  // Navigate to Courses
+                },
+                icon: const Icon(Icons.play_arrow),
+                label: Text(AppLocalizations.of(context)!.startLearning),
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(double.infinity, 48.h),
+                ),
               ),
             ),
           ],
