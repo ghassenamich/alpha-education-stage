@@ -137,4 +137,37 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get startLearning => 'Commencer à apprendre';
+
+  @override
+  String get city => 'Ville';
+
+  @override
+  String get address => 'Adresse';
+
+  @override
+  String get postalCode => 'Code postal';
+
+  @override
+  String get birthdate => 'Date de naissance';
+
+  @override
+  String get status => 'Statut';
+
+  @override
+  String get preferredLanguage => 'Langue préférée';
+
+  @override
+  String get description => 'Description';
+
+  @override
+  String get nodiscription => 'Aucune description disponible';
+
+  @override
+  String get unknown => 'Inconnu';
+
+  @override
+  String get na => 'N/D';
+
+  @override
+  String get checkingSession => 'Vérification de la session...';
 }

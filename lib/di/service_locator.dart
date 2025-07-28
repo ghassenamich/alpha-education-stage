@@ -6,6 +6,8 @@ import 'package:education/features/auth/domain/usecases/login_user.dart';
 import 'package:education/features/auth/presentation/bloc/login_bloc.dart';
 import 'package:education/core/localizations/bloc/local_bloc.dart';
 import 'package:education/core/localizations/data/locale_repository.dart';
+import 'package:education/features/auth/presentation/cubit/session_startup_cubit.dart';
+import 'package:education/features/profile/data/data_sources/profile_remote_data_source.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -54,5 +56,12 @@ Future<void> init() async {
   sl.registerFactory(() => LoginBloc(loginUser: sl()));
 
   sl.registerLazySingleton<ThemeBloc>(() => ThemeBloc());
+
+  sl.registerLazySingleton(() => SessionStartupCubit(sl()));
+
+  sl.registerLazySingleton<ProfileRemoteDataSource>(
+  () => ProfileRemoteDataSourceImpl(sl<Dio>()),
+);
+
 
 }

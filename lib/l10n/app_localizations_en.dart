@@ -134,4 +134,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get startLearning => 'Start Learning';
+
+  @override
+  String get city => 'City';
+
+  @override
+  String get address => 'Address';
+
+  @override
+  String get postalCode => 'Postal Code';
+
+  @override
+  String get birthdate => 'Birthdate';
+
+  @override
+  String get status => 'Status';
+
+  @override
+  String get preferredLanguage => 'Preferred Language';
+
+  @override
+  String get description => 'Description';
+
+  @override
+  String get nodiscription => 'No description available';
+
+  @override
+  String get unknown => 'Unknown';
+
+  @override
+  String get na => 'N/A';
+
+  @override
+  String get checkingSession => 'Checking session...';
 }

@@ -1,108 +1,212 @@
-import 'package:education/di/service_locator.dart';
-import 'package:education/features/auth/presentation/pages/loginpage.dart';
+import 'package:education/features/profile/data/data_sources/profile_remote_data_source.dart';
+import 'package:education/features/profile/data/models/user_profile_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:education/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:education/features/auth/domain/entities/user.dart';
+import 'package:education/core/util/session_storage.dart';
 import 'package:education/l10n/app_localizations.dart';
-import 'package:education/features/auth/domain/usecases/logout_user.dart';
-import 'package:education/features/auth/data/repository/auth_repository_impl.dart';
+import 'package:education/di/service_locator.dart' as di;
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
-  Future<void> _logout(BuildContext context) async {
-    final logout = LogoutUser(AuthRepositoryImpl(sl()));
-    await logout();
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => LoginPage()),
-    );
-    ;
+class _ProfilePageState extends State<ProfilePage> {
+  UserProfileModel? profile;
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadProfile();
+  }
+
+  Future<void> _loadProfile() async {
+    final (user, headers) = await SessionStorage.loadSession();
+    if (user != null && headers != null) {
+      final dataSource = di.sl<ProfileRemoteDataSource>();
+      final fetchedProfile = await dataSource.fetchProfile(
+        headers: headers,
+        userType: user.type,
+      );
+      setState(() {
+        profile = fetchedProfile;
+        isLoading = false;
+      });
+    } else {
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 
   @override
-  Widget build(BuildContext context) {
-    final user = context.select<AuthBloc, User?>((bloc) => bloc.state.user);
-    final theme = Theme.of(context).colorScheme;
+Widget build(BuildContext context) {
+  final theme = Theme.of(context).colorScheme;
 
-    if (user == null) {
-      return const Center(child: Text("User data not loaded."));
-    }
+  return Scaffold(
+    backgroundColor: theme.surface,
+    appBar: AppBar(
+      title: Text(
+        AppLocalizations.of(context)!.profile,
+        style: const TextStyle(fontFamily: "roboto"),
+      ),
+    ),
+    body: ListView(
+      padding: EdgeInsets.all(16.w),
+      children: [
+        _buildProfileHeader(theme),
+        SizedBox(height: 24.h),
+        _buildInfoList(theme),
+        Divider(height: 32.h),
+        _buildDescription(theme),
+      ],
+    ),
+  );
+}
 
-    final fullName = '${user.firstName ?? ''} ${user.lastName ?? ''}'.trim();
-
-    return Scaffold(
-      backgroundColor: theme.surface,
-      appBar: AppBar(title: Text(AppLocalizations.of(context)!.profile,style: TextStyle(fontFamily: "roboto"),)),
-      body: ListView(
-        padding: EdgeInsets.all(16.w),
-        children: [
-          Center(
-            child: Column(
-              children: [
-                CircleAvatar(
-                  radius: 48.r,
-                  backgroundColor: theme.primary,
-                  child: Icon(Icons.person, size: 48.r, color: theme.onPrimary),
-                ),
-                SizedBox(height: 12.h),
-                Text(
-                  fullName.isNotEmpty
-                      ? fullName
-                      : AppLocalizations.of(context)!.anonymousUser,
-                  style: TextStyle(
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.bold,
-                    color: theme.primary,
-                    fontFamily: 'roboto',
-                  ),
-                ),
-                SizedBox(height: 4.h),
-                Text(
-                  user.email,
-                  style: TextStyle(color: theme.primary, fontSize: 14.sp, fontFamily: fullName),
-                ),
-              ],
-            ),
+Widget _buildProfileHeader(ColorScheme theme) {
+  if (isLoading) {
+    return Column(
+      children: [
+        Container(
+          width: 96.r,
+          height: 96.r,
+          decoration: BoxDecoration(
+            color: Colors.grey.shade300,
+            shape: BoxShape.circle,
           ),
+        ),
+        SizedBox(height: 12.h),
+        Container(
+          width: 120.w,
+          height: 20.h,
+          color: Colors.grey.shade300,
+        ),
+        SizedBox(height: 8.h),
+        Container(
+          width: 180.w,
+          height: 16.h,
+          color: Colors.grey.shade300,
+        ),
+      ],
+    );
+  }
 
-          SizedBox(height: 24.h),
+  final fullName = "${profile!.firstName} ${profile!.lastName}";
 
-          ListTile(
-            leading: Icon(Icons.badge, color: theme.primary),
-            title: Text(
-              AppLocalizations.of(context)!.userType,
-              style: TextStyle(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.w500,
-                color: theme.primary,
-                fontFamily: 'roboto',
-              ),
-            ),
-            subtitle: Text(
-              user.type,
-              style: TextStyle(color: theme.primary, fontSize: 16.sp,fontFamily: 'roboto'),
-            ),
+  return Column(
+    children: [
+      CircleAvatar(
+        radius: 48.r,
+        backgroundColor: theme.primary,
+        child: Icon(Icons.person, size: 48.r, color: theme.onPrimary),
+      ),
+      SizedBox(height: 12.h),
+      Text(
+        fullName,
+        style: TextStyle(
+          fontSize: 20.sp,
+          fontWeight: FontWeight.bold,
+          color: theme.primary,
+          fontFamily: 'roboto',
+        ),
+      ),
+      SizedBox(height: 4.h),
+      Text(profile!.email,
+          style: TextStyle(color: theme.primary, fontSize: 14.sp)),
+    ],
+  );
+}
+
+Widget _buildInfoList(ColorScheme theme) {
+  if (isLoading) {
+    return Column(
+      children: List.generate(6, (index) {
+        return Padding(
+          padding: EdgeInsets.only(bottom: 16.h),
+          child: Container(
+            width: double.infinity,
+            height: 50.h,
+            color: Colors.grey.shade300,
           ),
+        );
+      }),
+    );
+  }
 
-          Divider(height: 32.h),
+  return Column(
+    children: [
+      _buildInfoTile(Icons.badge, AppLocalizations.of(context)!.userType,
+          profile!.status ?? AppLocalizations.of(context)!.unknown, theme),
+      _buildInfoTile(Icons.location_city, AppLocalizations.of(context)!.city,
+          profile!.city ?? AppLocalizations.of(context)!.na, theme),
+      _buildInfoTile(Icons.home, AppLocalizations.of(context)!.address,
+          profile!.address ?? AppLocalizations.of(context)!.na, theme),
+      _buildInfoTile(Icons.map, AppLocalizations.of(context)!.postalCode,
+          profile!.postalCode ?? AppLocalizations.of(context)!.na, theme),
+      _buildInfoTile(Icons.phone, AppLocalizations.of(context)!.phonenumber,
+          profile!.phone ?? AppLocalizations.of(context)!.na, theme),
+      _buildInfoTile(Icons.cake, AppLocalizations.of(context)!.birthdate,
+          profile!.birthdate ?? AppLocalizations.of(context)!.na, theme),
+    ],
+  );
+}
 
-          OutlinedButton.icon(
-            onPressed: () => _logout(context),
-            icon: Icon(Icons.logout, color: theme.primary),
-            label: Text(
-              AppLocalizations.of(context)!.logout,
-              style: TextStyle(color: theme.primary, fontSize: 16.sp, fontFamily: 'roboto'),
-            ),
-            style: OutlinedButton.styleFrom(
-              side: BorderSide(color: theme.primary),
-              minimumSize: Size(double.infinity, 48.h),
-            ),
-          ),
-        ],
+Widget _buildDescription(ColorScheme theme) {
+  if (isLoading) {
+    return Container(
+        width: double.infinity, height: 100.h, color: Colors.grey.shade300);
+  }
+
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        AppLocalizations.of(context)!.description,
+        style: TextStyle(
+          fontSize: 18.sp,
+          fontWeight: FontWeight.w500,
+          color: theme.primary,
+          fontFamily: 'roboto',
+        ),
+      ),
+      SizedBox(height: 8.h),
+      Text(
+        profile!.description ?? AppLocalizations.of(context)!.nodiscription,
+        style: TextStyle(color: theme.primary, fontSize: 14.sp),
+      ),
+    ],
+  );
+}
+
+
+  Widget _buildInfoTile(
+    IconData icon,
+    String title,
+    String value,
+    ColorScheme theme,
+  ) {
+    return ListTile(
+      leading: Icon(icon, color: theme.primary),
+      title: Text(
+        title,
+        style: TextStyle(
+          fontSize: 18.sp,
+          fontWeight: FontWeight.w500,
+          color: theme.primary,
+          fontFamily: 'roboto',
+        ),
+      ),
+      subtitle: Text(
+        value,
+        style: TextStyle(
+          color: theme.primary,
+          fontSize: 16.sp,
+          fontFamily: 'roboto',
+        ),
       ),
     );
   }

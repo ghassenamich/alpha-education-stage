@@ -3,9 +3,24 @@ import 'package:education/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:education/core/localizations/widgets/languageselector.dart';
+import 'package:education/features/auth/domain/usecases/logout_user.dart';
+import 'package:education/features/auth/data/repository/auth_repository_impl.dart';
+import 'package:education/di/service_locator.dart';
+import 'package:education/features/auth/presentation/pages/loginpage.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
+
+  Future<void> _logout(BuildContext context) async {
+    final logout = LogoutUser(AuthRepositoryImpl(sl()));
+    await logout();
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => LoginPage()),
+    );
+    ;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +86,7 @@ class SettingsPage extends StatelessWidget {
                 color: theme.primary,
               ),
             ),
-            trailing: const Icon(Icons.chevron_right),
+            trailing: Icon(Icons.chevron_right, color: theme.primary),
             onTap: () {
               final theme = Theme.of(context).colorScheme;
 
@@ -93,18 +108,12 @@ class SettingsPage extends StatelessWidget {
                     children: [
                       Text(
                         'Version 1.0.0',
-                        style: TextStyle(
-                          color: theme.primary,
-                          fontSize: 14.sp,
-                        ),
+                        style: TextStyle(color: theme.primary, fontSize: 14.sp),
                       ),
                       SizedBox(height: 12.h),
                       Text(
                         AppLocalizations.of(context)!.appdescription,
-                        style: TextStyle(
-                          color: theme.primary,
-                          fontSize: 16.sp,
-                        ),
+                        style: TextStyle(color: theme.primary, fontSize: 16.sp),
                       ),
                     ],
                   ),
@@ -122,8 +131,25 @@ class SettingsPage extends StatelessWidget {
             },
           ),
 
-          
-          
+          Divider(),
+          SizedBox(height:20.h),
+
+          OutlinedButton.icon(
+            onPressed: () => _logout(context),
+            icon: Icon(Icons.logout, color: theme.primary),
+            label: Text(
+              AppLocalizations.of(context)!.logout,
+              style: TextStyle(
+                color: theme.primary,
+                fontSize: 16.sp,
+                fontFamily: 'roboto',
+              ),
+            ),
+            style: OutlinedButton.styleFrom(
+              side: BorderSide(color: theme.primary),
+              minimumSize: Size(double.infinity, 48.h),
+            ),
+          ),
         ],
       ),
     );

@@ -44,5 +44,18 @@
     "userType": "User Type",
     "weLcome": "Welcome",
     "enrolledCourses": "Enrolled Courses",
-    "startLearning": "Start Learning"
+    "startLearning": "Start Learning",
+    "city": "City",
+    "address": "Address",
+    "postalCode": "Postal Code",
+    "birthdate": "Birthdate",
+    "status": "Status",
+    "preferredLanguage": "Preferred Language",
+    "description": "Description",
+    "nodiscription": "No description available",
+    "unknown": "Unknown",
+    "na":"N/A",
+    "checkingSession": "Checking session..."
+    
+
 }

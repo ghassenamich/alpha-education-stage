@@ -44,6 +44,17 @@
     "userType": "Type d'utilisateur",
     "weLcome": "Bienvenue",
     "enrolledCourses": "Cours inscrits",
-    "startLearning": "Commencer à apprendre"
+    "startLearning": "Commencer à apprendre",
+    "city": "Ville",
+    "address": "Adresse",
+    "postalCode": "Code postal",
+    "birthdate": "Date de naissance",
+    "status": "Statut",
+    "preferredLanguage": "Langue préférée",
+    "description": "Description",
+    "nodiscription": "Aucune description disponible",
+    "unknown": "Inconnu",
+    "na": "N/D",
+    "checkingSession": "Vérification de la session..."
     
 }
