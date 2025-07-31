@@ -11,7 +11,7 @@
     "password": "Mot de passe",
     "loginSuccess": "Connexion réussie!",
     "getStarted": "COMMENCER",
-    "mobileApp" : "Application mobile",
+    "mobileApp": "Application mobile",
     "education": "ÉDUCATION",
     "makesureinternet": "Assurez-vous d'être connecté à Internet",
     "welcome": "ALPHA ÉDUCATION",
@@ -55,6 +55,13 @@
     "nodiscription": "Aucune description disponible",
     "unknown": "Inconnu",
     "na": "N/D",
-    "checkingSession": "Vérification de la session..."
-    
+    "checkingSession": "Vérification de la session...",
+    "tutor": "Tuteur",
+    "schoolAgent": "Agent scolaire",
+    "parent": "Parent",
+    "translatedDisclaimer": "",
+    "seeOriginal": "Voir l'original",
+    "seeTranslation": "Voir la traduction"
+
+
 }

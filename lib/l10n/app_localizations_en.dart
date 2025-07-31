@@ -167,4 +167,23 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get checkingSession => 'Checking session...';
+
+  @override
+  String get tutor => 'Tutor';
+
+  @override
+  String get schoolAgent => 'School Agent';
+
+  @override
+  String get parent => 'Parent';
+
+  @override
+  String get translatedDisclaimer =>
+      'This is a translation from French to English. There could be a loss of meaning. Sorry for the inconvenience.';
+
+  @override
+  String get seeOriginal => 'See Original';
+
+  @override
+  String get seeTranslation => 'See Translation';
 }

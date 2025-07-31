@@ -20,6 +20,7 @@ class UserProfileModel extends UserProfile {
     String? preferredLanguage,
     required bool notificationsEnabled,
     String? avatarUrl,
+    
   }) : super(
          id: id,
          firstName: firstName,

@@ -54,8 +54,13 @@
     "description": "Description",
     "nodiscription": "No description available",
     "unknown": "Unknown",
-    "na":"N/A",
-    "checkingSession": "Checking session..."
-    
+    "na": "N/A",
+    "checkingSession": "Checking session...",
+    "tutor": "Tutor",
+    "schoolAgent": "School Agent",
+    "parent": "Parent",
+    "translatedDisclaimer": "This is a translation from French to English. There could be a loss of meaning. Sorry for the inconvenience.",
+    "seeOriginal": "See Original",
+    "seeTranslation": "See Translation"
 
 }

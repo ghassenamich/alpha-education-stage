@@ -170,4 +170,22 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get checkingSession => 'Vérification de la session...';
+
+  @override
+  String get tutor => 'Tuteur';
+
+  @override
+  String get schoolAgent => 'Agent scolaire';
+
+  @override
+  String get parent => 'Parent';
+
+  @override
+  String get translatedDisclaimer => '';
+
+  @override
+  String get seeOriginal => 'Voir l\'original';
+
+  @override
+  String get seeTranslation => 'Voir la traduction';
 }

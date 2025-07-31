@@ -415,6 +415,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Checking session...'**
   String get checkingSession;
+
+  /// No description provided for @tutor.
+  ///
+  /// In en, this message translates to:
+  /// **'Tutor'**
+  String get tutor;
+
+  /// No description provided for @schoolAgent.
+  ///
+  /// In en, this message translates to:
+  /// **'School Agent'**
+  String get schoolAgent;
+
+  /// No description provided for @parent.
+  ///
+  /// In en, this message translates to:
+  /// **'Parent'**
+  String get parent;
+
+  /// No description provided for @translatedDisclaimer.
+  ///
+  /// In en, this message translates to:
+  /// **'This is a translation from French to English. There could be a loss of meaning. Sorry for the inconvenience.'**
+  String get translatedDisclaimer;
+
+  /// No description provided for @seeOriginal.
+  ///
+  /// In en, this message translates to:
+  /// **'See Original'**
+  String get seeOriginal;
+
+  /// No description provided for @seeTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'See Translation'**
+  String get seeTranslation;
 }
 
 class _AppLocalizationsDelegate

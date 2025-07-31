@@ -16,6 +16,7 @@ ThemeData lightTheme = ThemeData(
     onSurfaceVariant: Color.fromARGB(255, 236, 245, 255),
     primaryContainer: Color.fromARGB(255, 164, 213, 253),
     onPrimaryContainer:  Color.fromARGB(255, 53, 148, 246),
+    tertiary: Color(0xFFE0E0E0)
   ),
   primaryColor: const Color.fromARGB(255, 70, 172, 255),
   scaffoldBackgroundColor: const Color.fromARGB(255, 48, 48, 255),
@@ -41,7 +42,8 @@ ThemeData darkTheme = ThemeData(
     onSurfaceVariant: Color.fromARGB(255, 0, 9, 20),
     onSurface: Color.fromARGB(255, 0, 33, 68),
     primaryContainer: Color.fromARGB(255, 52, 113, 183),
-    onPrimaryContainer: Color.fromARGB(255, 44, 117, 214)
+    onPrimaryContainer: Color.fromARGB(255, 44, 117, 214),
+    tertiary: Color.fromARGB(255, 0, 36, 66)
   ),
   scaffoldBackgroundColor: const Color.fromARGB(255, 48, 48, 255),
   appBarTheme: const AppBarTheme(

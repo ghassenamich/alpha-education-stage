@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:education/core/localizations/bloc/local_event.dart';
 import 'package:education/core/localizations/bloc/local_state.dart';
 import 'package:education/core/localizations/data/locale_repository.dart';
-import 'dart:ui' as ui;
 
 class LocaleBloc extends Bloc<LocaleEvent, LocaleState> {
   final LocaleRepository localeRepository;
