@@ -20,7 +20,6 @@ class ThemeToggleButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ThemeBloc, ThemeState>(
       builder: (context, state) {
-        final isDarkMode = state.themeMode == ThemeMode.dark;
 
         final IconData iconToShow = icon ?? Icons.nightlight_round;
 
