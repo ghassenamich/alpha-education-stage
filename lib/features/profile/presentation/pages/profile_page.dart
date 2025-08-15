@@ -30,17 +30,20 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Future<void> _loadProfile() async {
-    final (storedUser, headers) = await SessionStorage.loadSession();
-    user = storedUser;
-    String usert = storedUser!.type;
-    if (usert == "schoolagent") {
-      usert = "school_agent";
-    }
+  final (storedUser, headers) = await SessionStorage.loadSession();
+  user = storedUser;
+
+  final String usert = storedUser!.type;
+  final String pathUserType = usert == "schoolagent" ? "school_agent" : usert;
+
+  // use pathUserType in your request
+
+
     if (user != null && headers != null) {
       final dataSource = di.sl<ProfileRemoteDataSource>();
       final fetchedProfile = await dataSource.fetchProfile(
         headers: headers,
-        userType: usert,
+        userType: pathUserType,
       );
 
       String? translated;

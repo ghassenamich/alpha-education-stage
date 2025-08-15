@@ -17,7 +17,7 @@ class _MainScaffoldState extends State<MainScaffold> {
 
   final List<Widget> _pages = const [
     HomePage(),
-    CoursesPage(),
+    TutorHistoryPage(),
     ProfilePage(),
     SettingsPage(),
   ];
@@ -36,7 +36,7 @@ class _MainScaffoldState extends State<MainScaffold> {
         selectedItemColor: Theme.of(context).colorScheme.primary,
         unselectedItemColor: Colors.grey,
         type: BottomNavigationBarType.fixed,
-        items:  [
+        items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: AppLocalizations.of(context)!.home,

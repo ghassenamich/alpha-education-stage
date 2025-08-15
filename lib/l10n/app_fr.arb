@@ -61,7 +61,18 @@
     "parent": "Parent",
     "translatedDisclaimer": "",
     "seeOriginal": "Voir l'original",
-    "seeTranslation": "Voir la traduction"
-
-
+    "seeTranslation": "Voir la traduction",
+    "tutorHistoryTitle": "Historique des cours",
+    "noLessons": "Aucun cours trouvé.",
+    "errorLoadingLessons": "Erreur lors du chargement des cours.",
+    "lessonDetails": "Détails du cours",
+    "date": "Date",
+    "time": "Heure",
+    "subject": "Sujet",
+    "student": "Étudiant",
+    "location": "Emplacement",
+    "lessonInstructions": "Suivez les consignes, motivez, soyez dynamiques !",
+    "groupLabel": "Groupe",
+    "studentsList": "Liste des élèves",
+    "classLabel": "Classe"
 }

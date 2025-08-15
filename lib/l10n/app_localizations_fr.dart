@@ -188,4 +188,44 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get seeTranslation => 'Voir la traduction';
+
+  @override
+  String get tutorHistoryTitle => 'Historique des cours';
+
+  @override
+  String get noLessons => 'Aucun cours trouvé.';
+
+  @override
+  String get errorLoadingLessons => 'Erreur lors du chargement des cours.';
+
+  @override
+  String get lessonDetails => 'Détails du cours';
+
+  @override
+  String get date => 'Date';
+
+  @override
+  String get time => 'Heure';
+
+  @override
+  String get subject => 'Sujet';
+
+  @override
+  String get student => 'Étudiant';
+
+  @override
+  String get location => 'Emplacement';
+
+  @override
+  String get lessonInstructions =>
+      'Suivez les consignes, motivez, soyez dynamiques !';
+
+  @override
+  String get groupLabel => 'Groupe';
+
+  @override
+  String get studentsList => 'Liste des élèves';
+
+  @override
+  String get classLabel => 'Classe';
 }

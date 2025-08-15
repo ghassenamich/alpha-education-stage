@@ -451,6 +451,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'See Translation'**
   String get seeTranslation;
+
+  /// No description provided for @tutorHistoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tutor History'**
+  String get tutorHistoryTitle;
+
+  /// No description provided for @noLessons.
+  ///
+  /// In en, this message translates to:
+  /// **'No lessons found.'**
+  String get noLessons;
+
+  /// No description provided for @errorLoadingLessons.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading lessons.'**
+  String get errorLoadingLessons;
+
+  /// No description provided for @lessonDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson Details'**
+  String get lessonDetails;
+
+  /// No description provided for @date.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get date;
+
+  /// No description provided for @time.
+  ///
+  /// In en, this message translates to:
+  /// **'Time'**
+  String get time;
+
+  /// No description provided for @subject.
+  ///
+  /// In en, this message translates to:
+  /// **'Subject'**
+  String get subject;
+
+  /// No description provided for @student.
+  ///
+  /// In en, this message translates to:
+  /// **'Student'**
+  String get student;
+
+  /// No description provided for @location.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get location;
+
+  /// No description provided for @lessonInstructions.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow guidelines: separate groups, motivate, stay dynamic!'**
+  String get lessonInstructions;
+
+  /// No description provided for @groupLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Group'**
+  String get groupLabel;
+
+  /// No description provided for @studentsList.
+  ///
+  /// In en, this message translates to:
+  /// **'Student List'**
+  String get studentsList;
+
+  /// No description provided for @classLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Class'**
+  String get classLabel;
 }
 
 class _AppLocalizationsDelegate

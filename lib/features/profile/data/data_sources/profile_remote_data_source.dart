@@ -18,6 +18,11 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
     required Map<String, String> headers,
     required String userType,
   }) async {
+    if (userType == "schoolagent") {
+      userType = "school_agent";
+      
+    }
+    print("sending to: /api/v1/$userType/members_only");
     final response = await dio.get(
       '/api/v1/$userType/members_only',
       options: Options(headers: headers),

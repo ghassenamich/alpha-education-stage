@@ -186,4 +186,44 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get seeTranslation => 'See Translation';
+
+  @override
+  String get tutorHistoryTitle => 'Tutor History';
+
+  @override
+  String get noLessons => 'No lessons found.';
+
+  @override
+  String get errorLoadingLessons => 'Error loading lessons.';
+
+  @override
+  String get lessonDetails => 'Lesson Details';
+
+  @override
+  String get date => 'Date';
+
+  @override
+  String get time => 'Time';
+
+  @override
+  String get subject => 'Subject';
+
+  @override
+  String get student => 'Student';
+
+  @override
+  String get location => 'Location';
+
+  @override
+  String get lessonInstructions =>
+      'Follow guidelines: separate groups, motivate, stay dynamic!';
+
+  @override
+  String get groupLabel => 'Group';
+
+  @override
+  String get studentsList => 'Student List';
+
+  @override
+  String get classLabel => 'Class';
 }

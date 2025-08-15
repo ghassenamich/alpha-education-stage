@@ -61,6 +61,18 @@
     "parent": "Parent",
     "translatedDisclaimer": "This is a translation from French to English. There could be a loss of meaning. Sorry for the inconvenience.",
     "seeOriginal": "See Original",
-    "seeTranslation": "See Translation"
-
+    "seeTranslation": "See Translation",
+    "tutorHistoryTitle": "Tutor History",
+    "noLessons": "No lessons found.",
+    "errorLoadingLessons": "Error loading lessons.",
+    "lessonDetails": "Lesson Details",
+    "date": "Date",
+    "time": "Time",
+    "subject": "Subject",
+    "student": "Student",
+    "location": "Location",
+    "lessonInstructions": "Follow guidelines: separate groups, motivate, stay dynamic!",
+    "groupLabel": "Group",
+    "studentsList": "Student List",
+    "classLabel": "Class"
 }

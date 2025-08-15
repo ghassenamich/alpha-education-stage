@@ -7,17 +7,23 @@ import 'package:education/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:education/features/auth/presentation/bloc/auth_event.dart';
 import 'package:education/features/auth/presentation/cubit/session_startup_cubit.dart';
 import 'package:education/features/auth/presentation/pages/mainpage.dart';
+import 'package:education/features/courses/presentation/cubit/tutor_history_cubit.dart';
+import 'package:education/features/courses/presentation/pages/LessonDetailPage.dart';
+import 'package:education/features/courses/presentation/pages/cours_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:education/l10n/app_localizations.dart';
 import 'package:education/features/auth/presentation/bloc/login_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart'; // <-- Import this
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart'; // <-- Added
 import 'di/service_locator.dart' as di;
 import 'config/themes/themes.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding); // <-- Added
+
   await di.init();
   runApp(const MyApp());
 }
@@ -35,6 +41,10 @@ class MyApp extends StatelessWidget {
         BlocProvider<AuthBloc>(create: (_) => AuthBloc()),
         BlocProvider<SessionStartupCubit>(
           create: (_) => di.sl<SessionStartupCubit>()..checkSession(),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<TutorHistoryCubit>()..loadTutorHistory(),
+          child: TutorHistoryPage(),
         ),
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
@@ -60,29 +70,37 @@ class MyApp extends StatelessWidget {
                       GlobalWidgetsLocalizations.delegate,
                       GlobalCupertinoLocalizations.delegate,
                     ],
+                    routes: {
+                      '/lesson_detail': (context) => const LessonDetailPage(),
+                    },
                     home: BlocBuilder<SessionStartupCubit, SessionState>(
                       builder: (context, state) {
+                        if (state is! SessionChecking) {
+                          FlutterNativeSplash.remove(); // <-- Added
+                        }
+
                         if (state is SessionChecking) {
                           return Scaffold(
+                            backgroundColor: Theme.of(
+                              context,
+                            ).colorScheme.surface,
                             body: Center(
-                              child: Container(
-                                width: 384.w,
-                                color: Theme.of(context).colorScheme.surface,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    CircularProgressIndicator(
-                                      color: Theme.of(
-                                        context,
-                                      ).colorScheme.primary,
-                                    ),
-                                    SizedBox(height: 16),
-                                    Text(
-                                      AppLocalizations.of(context)!.checkingSession,
-                                      style: TextStyle(fontSize: 18, fontFamily: "roboto", color: Theme.of(context).colorScheme.onSurface),
-                                    ),
-                                  ],
-                                ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset(
+                                    'assets/images/image.png',
+                                    width: 200.w,
+                                    height: 200.w,
+                                    fit: BoxFit.contain,
+                                  ),
+                                  SizedBox(height: 24.h),
+                                  CircularProgressIndicator(
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.primary,
+                                  ),
+                                ],
                               ),
                             ),
                           );
@@ -92,7 +110,7 @@ class MyApp extends StatelessWidget {
                           );
                           return MainScaffold();
                         } else {
-                          return const Mainpage(); // login button is here
+                          return const Mainpage();
                         }
                       },
                     ),
