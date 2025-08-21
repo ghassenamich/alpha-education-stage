@@ -1,4 +1,4 @@
-import '../entities/lesson_entity.dart';
+import 'package:education/features/courses/domain/entities/school_entity.dart';
 import '../repository/tutor_history_repository.dart';
 
 class GetTutorHistoryUseCase {
@@ -6,7 +6,7 @@ class GetTutorHistoryUseCase {
 
   GetTutorHistoryUseCase(this.repository);
 
-  Future<List<LessonEntity>> call() {
+  Future<List<SchoolEntity>> call() {
     return repository.getTutorHistory();
   }
 }

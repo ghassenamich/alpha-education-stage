@@ -1,5 +1,5 @@
-import '../entities/lesson_entity.dart';
+import '../entities/school_entity.dart';
 
 abstract class TutorHistoryRepository {
-  Future<List<LessonEntity>> getTutorHistory();
+  Future<List<SchoolEntity>> getTutorHistory();
 }

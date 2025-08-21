@@ -30,14 +30,13 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Future<void> _loadProfile() async {
-  final (storedUser, headers) = await SessionStorage.loadSession();
-  user = storedUser;
+    final (storedUser, headers) = await SessionStorage.loadSession();
+    user = storedUser;
 
-  final String usert = storedUser!.type;
-  final String pathUserType = usert == "schoolagent" ? "school_agent" : usert;
+    final String usert = storedUser!.type;
+    final String pathUserType = usert == "schoolagent" ? "school_agent" : usert;
 
-  // use pathUserType in your request
-
+    // use pathUserType in your request
 
     if (user != null && headers != null) {
       final dataSource = di.sl<ProfileRemoteDataSource>();
@@ -100,6 +99,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       backgroundColor: theme.surface,
       appBar: AppBar(
+        backgroundColor: theme.surface,
         title: Text(
           AppLocalizations.of(context)!.profile,
           style: const TextStyle(fontFamily: "roboto"),
@@ -131,9 +131,17 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
           SizedBox(height: 12.h),
-          Container(width: 120.w, height: 20.h, color: Theme.of(context).colorScheme.tertiary),
+          Container(
+            width: 120.w,
+            height: 20.h,
+            color: Theme.of(context).colorScheme.tertiary,
+          ),
           SizedBox(height: 8.h),
-          Container(width: 180.w, height: 16.h, color: Theme.of(context).colorScheme.tertiary),
+          Container(
+            width: 180.w,
+            height: 16.h,
+            color: Theme.of(context).colorScheme.tertiary,
+          ),
         ],
       );
     }

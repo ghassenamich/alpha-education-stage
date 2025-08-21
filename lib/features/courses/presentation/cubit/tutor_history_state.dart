@@ -7,13 +7,11 @@ class TutorHistoryInitial extends TutorHistoryState {}
 class TutorHistoryLoading extends TutorHistoryState {}
 
 class TutorHistoryLoaded extends TutorHistoryState {
-  final List<LessonEntity> lessons;
-
-  TutorHistoryLoaded(this.lessons);
+  final List<SchoolEntity> schools;  // ✅ was lessons before
+  TutorHistoryLoaded(this.schools);
 }
 
 class TutorHistoryError extends TutorHistoryState {
   final String message;
-
   TutorHistoryError(this.message);
 }

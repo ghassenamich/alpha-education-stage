@@ -1,4 +1,6 @@
 import 'package:education/core/util/session_storage.dart';
+import 'package:education/features/courses/data/models/school_model.dart';
+import 'package:education/features/courses/domain/entities/school_entity.dart';
 import '../../domain/entities/lesson_entity.dart';
 import '../../domain/repository/tutor_history_repository.dart';
 import '../data_sources/tutor_history_remote_datasource.dart';
@@ -10,14 +12,14 @@ class TutorHistoryRepositoryImpl implements TutorHistoryRepository {
   TutorHistoryRepositoryImpl(this.remoteDataSource);
 
   @override
-  Future<List<LessonEntity>> getTutorHistory() async {
+  Future<List<SchoolEntity>> getTutorHistory() async {
     final (storedUser, headers) = await SessionStorage.loadSession();
     if (storedUser == null || headers == null) return [];
 
     String usert = storedUser.type;
     if (usert == "schoolagent") usert = "school_agent";
 
-    final List<LessonModel> rawLessons = await remoteDataSource.fetchTutorHistory(
+    final List<SchoolModel> rawLessons = await remoteDataSource.fetchTutorHistory(
       userType: usert,
       headers: headers,
     );

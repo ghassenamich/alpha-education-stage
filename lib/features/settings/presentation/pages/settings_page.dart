@@ -28,7 +28,7 @@ class SettingsPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: theme.surface,
-      appBar: AppBar(title: Text(AppLocalizations.of(context)!.settings)),
+      appBar: AppBar(backgroundColor: theme.surface,title: Text(AppLocalizations.of(context)!.settings)),
       body: ListView(
         padding: EdgeInsets.all(16.w),
         children: [

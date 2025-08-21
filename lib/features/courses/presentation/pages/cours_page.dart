@@ -1,10 +1,10 @@
-import 'package:education/features/courses/presentation/widgerts/lesson_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../l10n/app_localizations.dart';
+import '../../domain/entities/school_entity.dart';
 import '../cubit/tutor_history_cubit.dart';
+import '../widgerts/lesson_card.dart';
 
 class TutorHistoryPage extends StatefulWidget {
   const TutorHistoryPage({super.key});
@@ -28,6 +28,7 @@ class _TutorHistoryPageState extends State<TutorHistoryPage> {
     return Scaffold(
       backgroundColor: theme.surface,
       appBar: AppBar(
+        backgroundColor: theme.surface,
         title: Text(
           loc.tutorHistoryTitle,
           style: const TextStyle(fontFamily: 'roboto'),
@@ -42,9 +43,9 @@ class _TutorHistoryPageState extends State<TutorHistoryPage> {
             }
 
             if (state is TutorHistoryLoaded) {
-              final lessons = state.lessons;
+              final schools = state.schools;
 
-              if (lessons.isEmpty) {
+              if (schools.isEmpty) {
                 return Center(
                   child: Text(
                     loc.noLessons,
@@ -53,26 +54,52 @@ class _TutorHistoryPageState extends State<TutorHistoryPage> {
                 );
               }
 
-              return ListView.separated(
-                itemCount: lessons.length,
-                separatorBuilder: (_, __) => SizedBox(height: 12.h),
+              return ListView.builder(
+                itemCount: schools.length,
                 itemBuilder: (context, index) {
-                  final lesson = lessons[index];
+                  final SchoolEntity school = schools[index];
 
                   return Padding(
-                    padding: EdgeInsets.all(8.w),
-                    child: ConstrainedBox(
-                      constraints: BoxConstraints(maxWidth: 384.w),
-                      child: LessonCard(
-                        lesson: lesson,
-                        onTap: () {
-                          Navigator.pushNamed(
-                            context,
-                            '/lesson_detail',
-                            arguments: lesson,
+                    padding: EdgeInsets.only(bottom: 24.h),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // School header
+                        Text(
+                          school.name,
+                          style: TextStyle(
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.bold,
+                            color: theme.primary,
+                          ),
+                        ),
+                        if (school.postalCode != null)
+                          Text(
+                            school.postalCode!,
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              color: theme.primary.withOpacity(0.7),
+                            ),
+                          ),
+                        SizedBox(height: 12.h),
+
+                        // Lessons list under this school
+                        ...school.lessons.map((lesson) {
+                          return Padding(
+                            padding: EdgeInsets.only(bottom: 12.h),
+                            child: LessonCard(
+                              lesson: lesson,
+                              onTap: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  '/lesson_detail',
+                                  arguments: lesson,
+                                );
+                              },
+                            ),
                           );
-                        },
-                      ),
+                        }).toList(),
+                      ],
                     ),
                   );
                 },

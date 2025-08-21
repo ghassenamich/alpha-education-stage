@@ -43,7 +43,7 @@ class _MainScaffoldState extends State<MainScaffold> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.school),
-            label: AppLocalizations.of(context)!.courses,
+            label: AppLocalizations.of(context)!.tutorHistoryTitle,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
