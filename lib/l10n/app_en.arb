@@ -74,5 +74,6 @@
     "lessonInstructions": "Follow guidelines: separate groups, motivate, stay dynamic!",
     "groupLabel": "Group",
     "studentsList": "Student List",
-    "classLabel": "Class"
+    "classLabel": "Class",
+    "chat": "Chat"
 }

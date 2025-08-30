@@ -7,6 +7,7 @@ import 'package:education/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:education/features/auth/presentation/bloc/auth_event.dart';
 import 'package:education/features/auth/presentation/cubit/session_startup_cubit.dart';
 import 'package:education/features/auth/presentation/pages/mainpage.dart';
+import 'package:education/features/chat/presentation/cupit/chat_cubit.dart';
 import 'package:education/features/courses/presentation/cubit/tutor_history_cubit.dart';
 import 'package:education/features/courses/presentation/pages/LessonDetailPage.dart';
 import 'package:education/features/courses/presentation/pages/cours_page.dart';
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
           create: (context) => di.sl<TutorHistoryCubit>()..loadTutorHistory(),
           child: TutorHistoryPage(),
         ),
+        BlocProvider<ChatCubit>(create: (_) => di.sl<ChatCubit>()),
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, themeState) {

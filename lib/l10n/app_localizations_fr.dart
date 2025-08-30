@@ -228,4 +228,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get classLabel => 'Classe';
+
+  @override
+  String get chat => 'Chat';
 }

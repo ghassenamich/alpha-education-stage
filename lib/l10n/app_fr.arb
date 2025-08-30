@@ -74,5 +74,6 @@
     "lessonInstructions": "Suivez les consignes, motivez, soyez dynamiques !",
     "groupLabel": "Groupe",
     "studentsList": "Liste des élèves",
-    "classLabel": "Classe"
+    "classLabel": "Classe",
+    "chat": "Chat"
 }
